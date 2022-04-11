@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">BarberApp</string>
+    <string name="signup">SignUp</string>
+    <string name="signin">SignIn</string>
+</resources>

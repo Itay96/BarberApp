@@ -98,9 +98,7 @@ public class SignUpActivity extends AppCompatActivity {
             editTextPassword.setError("Password must have 6 Characters");
             editTextPassword.requestFocus();
             return;
-
         }
-
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override

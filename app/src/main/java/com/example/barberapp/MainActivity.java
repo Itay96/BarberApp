@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             return;
         }
 
-        if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
+      /*  if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
             etEmail.setError("Please enter a valid email");
             etEmail.requestFocus();
             return;
-        }
+        }*/
 
         if(password.isEmpty()){
             etPassword.setError("Password is required");

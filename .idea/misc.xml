@@ -3,10 +3,12 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.184" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1145" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/round_button.xml" value="0.1315" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_sign_up.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
   </component>

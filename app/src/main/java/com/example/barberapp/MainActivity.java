@@ -17,8 +17,8 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         //edit text password && email
-        TextView email = (TextView) findViewById(R.id.etEmail);
-        TextView password = (TextView) findViewById(R.id.etPassword);
+        TextView email =  findViewById(R.id.etEmail);
+        TextView password = findViewById(R.id.etPassword);
 
         //button login
         MaterialButton loginBtn = (MaterialButton) findViewById(R.id.BtnLogin);
@@ -29,13 +29,12 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 if(email.getText().toString().equals("admin")&&password.getText().toString().equals("admin")){
-                    Toast.makeText(MainActivity.this,"login succsesful",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"login Agree :)",Toast.LENGTH_SHORT).show();
                 }else{
-                    Toast.makeText(MainActivity.this,"login faild !",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(MainActivity.this,"login Rejected !",Toast.LENGTH_SHORT).show();
                 }
             }
         });
-
 
         signBtn.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -8,7 +8,7 @@
 
 
     <TextView
-        android:id="@+id/signin"
+        android:id="@+id/signup"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="50dp"
@@ -22,13 +22,14 @@
         android:textSize="35dp"
         android:textStyle="bold" />
 
+
     <EditText
         android:id="@+id/etUserName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@id/signin"
+        android:layout_below="@id/signup"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="-20dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
@@ -45,7 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/etUserName"
         android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="17dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="10dp"
         android:background="@android:drawable/editbox_dropdown_light_frame"
@@ -55,7 +56,6 @@
         android:inputType="textPassword"
         android:padding="20dp"
         android:textColor="@color/black" />
-
 
     <EditText
         android:id="@+id/etEmail"
@@ -86,5 +86,19 @@
         android:layout_marginBottom="20dp"
         android:backgroundTint="@color/black"
         android:text="SIGN UP"
+        app:cornerRadius="20dp" />
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/Btn_back"
+        android:layout_width="276dp"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/Btnsign_up"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="-4dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        android:backgroundTint="@color/black"
+        android:text="Back"
         app:cornerRadius="20dp" />
 </RelativeLayout>

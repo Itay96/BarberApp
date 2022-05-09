@@ -38,16 +38,18 @@ public class SignUpActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
+
         editTextEmail = findViewById(R.id.etEmail);
         editTextName = findViewById(R.id.etUserName);
         editTextPassword = findViewById(R.id.etPassword);
         mAuth = FirebaseAuth.getInstance();
+
         MaterialButton BtnSignup = (MaterialButton) findViewById(R.id.Btnsign_up);
         MaterialButton BtnBack = (MaterialButton) findViewById(R.id.Btn_back);
         // חיבור ל-FireBase
         FirebaseDatabase database = FirebaseDatabase.getInstance();
         DatabaseReference myRef = database.getReference("Users");
-        //פעולה המתבצעת ע"י לצה על כפתור signUp
+        //בעת לחיצה על כתור ה-SignUp מתבצעת קריאה לפונקציית RegisterUser
         BtnSignup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -120,10 +122,10 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     });
-                }else{
-                    Toast.makeText(getApplicationContext(), "Failed !", Toast.LENGTH_LONG).show();
+                    }else{
+                        Toast.makeText(getApplicationContext(), "Failed !", Toast.LENGTH_LONG).show();
                 }
             }
         });
       }
-    }
+   }

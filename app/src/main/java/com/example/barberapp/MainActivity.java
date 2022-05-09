@@ -16,9 +16,11 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
+    private TextView forgotPassword;
     private MaterialButton signBtn, loginBtn;
     private EditText etEmail, etPassword;
     private FirebaseAuth mAuth;
@@ -30,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         //email & password edit text
         etEmail = (EditText) findViewById(R.id.etEmail);//edit text password
         etPassword = (EditText) findViewById(R.id.etPassword);//edit text email
+        forgotPassword = (TextView) findViewById(R.id.forgotpass);
 
         //button login
         MaterialButton loginBtn = (MaterialButton) findViewById(R.id.BtnLogin);
@@ -37,6 +40,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         signBtn.setOnClickListener(this);
         loginBtn.setOnClickListener(this);
+        forgotPassword.setOnClickListener(this);
 
         mAuth = FirebaseAuth.getInstance();
         }
@@ -50,6 +54,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.BtnLogin:
                userLogin();
+                break;
+
+            case R.id.forgotpass:
+                startActivity(new Intent(this,UserForgotPassword.class));
+                break;
         }
     }
 
@@ -86,9 +95,17 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public void onComplete(@NonNull Task<AuthResult> task) {
 
                 if (task.isSuccessful()){
-                    startActivity(new Intent(MainActivity.this, UserActivity.class));
-                    Toast.makeText(MainActivity.this, "Hello my friend", Toast.LENGTH_SHORT).show();
-               }else{
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if(user.isEmailVerified()){
+                         startActivity(new Intent(MainActivity.this, UserActivity.class));
+                         Toast.makeText(MainActivity.this, "Hello my friend", Toast.LENGTH_SHORT).show();
+                    }else{
+                        user.sendEmailVerification();
+                        Toast.makeText(MainActivity.this, "Check your email to verify your account", Toast.LENGTH_SHORT).show();
+
+                    }
+                  }else{
                     Toast.makeText(MainActivity.this, "Failed ! , Please check your Pass & Email", Toast.LENGTH_SHORT).show();
                 }
             }

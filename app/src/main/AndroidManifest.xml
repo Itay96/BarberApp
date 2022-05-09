@@ -10,6 +10,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberApp">
         <activity
+            android:name=".UserForgotPassword"
+            android:exported="false" />
+        <activity
+            android:name=".UserSettings"
+            android:exported="false" />
+        <activity
             android:name=".UserActivity"
             android:exported="false" />
         <activity

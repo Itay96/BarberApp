@@ -25,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
     private DatabaseReference reference;
 
     private String userID;
-    private Button logOut;
+    private Button logOut,settingsBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +33,8 @@ public class UserActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user);
 
         logOut = (Button) findViewById(R.id.signOut);
+        settingsBtn = (Button) findViewById(R.id.settings);
+
        //כפתור יציאה במסך של המשתמש
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,6 +43,16 @@ public class UserActivity extends AppCompatActivity {
                 startActivity(new Intent(UserActivity.this, MainActivity.class));
             }
         });
+        //כפתור מעבר למסך הגדרות
+        settingsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),UserSettings.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
         //חיבור לדאה בייס לקבלת נתונים על המשתמש שמתחבר והצגתם על המסך
         user = FirebaseAuth.getInstance().getCurrentUser();
         reference = FirebaseDatabase.getInstance().getReference("Users");

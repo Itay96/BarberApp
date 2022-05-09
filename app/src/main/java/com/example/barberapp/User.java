@@ -5,7 +5,6 @@ public class User {
     private String name;
     private String email;
     private String password;
-
     public User(){
 
     }
@@ -14,6 +13,7 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
+
     }
 
     public String getName() {
@@ -39,4 +39,6 @@ public class User {
     public void setEmail(String email) {
         this.email = email;
     }
+
+
 }

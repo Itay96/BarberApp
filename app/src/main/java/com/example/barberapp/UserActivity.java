@@ -25,7 +25,7 @@ public class UserActivity extends AppCompatActivity {
     private DatabaseReference reference;
 
     private String userID;
-    private Button logOut,settingsBtn;
+    private Button logOut,settingsBtn,appointmentBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +34,7 @@ public class UserActivity extends AppCompatActivity {
 
         logOut = (Button) findViewById(R.id.signOut);
         settingsBtn = (Button) findViewById(R.id.settings);
+         appointmentBtn = (Button) findViewById(R.id.appointmentBtn);
 
        //כפתור יציאה במסך של המשתמש
         logOut.setOnClickListener(new View.OnClickListener() {
@@ -41,6 +42,7 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 FirebaseAuth.getInstance().signOut();
                 startActivity(new Intent(UserActivity.this, MainActivity.class));
+                finish();
             }
         });
         //כפתור מעבר למסך הגדרות
@@ -49,7 +51,16 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),UserSettings.class);
                 startActivity(intent);
-                finish();
+
+            }
+        });
+
+        //כפתור מעבר קביעת תורים
+        appointmentBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),AppointmentActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -62,6 +73,7 @@ public class UserActivity extends AppCompatActivity {
         final TextView fullNameTextView = (TextView) findViewById(R.id.fullName);
         final TextView emailTextView = (TextView) findViewById(R.id.emailAddress);
 
+
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -73,6 +85,8 @@ public class UserActivity extends AppCompatActivity {
                      greetingTextView.setText("welcome " + fullName +"!");
                      fullNameTextView.setText(fullName);
                      emailTextView.setText(email);
+
+
                  }
             }
             @Override

@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberApp">
         <activity
+            android:name=".ManagerAppointment"
+            android:exported="false" />
+        <activity
+            android:name=".ManagerLogIn"
+            android:exported="false" />
+        <activity
+            android:name=".AppointmentActivity"
+            android:exported="false" />
+        <activity
             android:name=".UserForgotPassword"
             android:exported="false" />
         <activity

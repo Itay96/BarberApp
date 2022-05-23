@@ -11,4 +11,28 @@
     <string name="invalid_username">Not a valid username</string>
     <string name="invalid_password">Password must be >5 characters</string>
     <string name="login_failed">"Login failed"</string>
+
+    <string-array name="barber_time">
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+        <item>4</item>
+        <item>5</item>
+        <item>6</item>
+        <item>7</item>
+        <item>8</item>
+    </string-array>
+
+    <string-array name="description">
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+        <item>random</item>
+
+
+    </string-array>
 </resources>

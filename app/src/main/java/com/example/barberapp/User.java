@@ -13,7 +13,6 @@ public class User {
         this.name = name;
         this.email = email;
         this.password = password;
-
     }
 
     public String getName() {
@@ -40,5 +39,5 @@ public class User {
         this.email = email;
     }
 
-
+    //public boolean getIsAdmin() {return isAdmin;}
 }

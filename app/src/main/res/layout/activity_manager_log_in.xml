@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/white"
-    tools:context=".UserActivity">
-
+    tools:context=".ManagerLogIn">
 
     <TextView
         android:id="@+id/greeting"
@@ -102,13 +100,13 @@
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/appointmentBtn"
+        android:id="@+id/AddAppointment"
         android:layout_width="262dp"
         android:layout_height="48dp"
         android:layout_marginStart="74dp"
         android:layout_marginEnd="75dp"
         android:backgroundTint="@color/black"
-        android:text="קבע תור"
+        android:text="הוסף תורים חדשים"
         app:cornerRadius="20dp"
         app:layout_constraintBottom_toTopOf="@+id/settings"
         app:layout_constraintEnd_toEndOf="parent"
@@ -129,5 +127,8 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="NotSibling" />
+
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

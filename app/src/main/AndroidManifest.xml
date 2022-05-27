@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BarberApp">
         <activity
+            android:name=".ManagerSettings"
+            android:exported="false" />
+        <activity
             android:name=".ManagerAppointment"
             android:exported="false" />
         <activity

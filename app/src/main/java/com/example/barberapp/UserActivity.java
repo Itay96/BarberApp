@@ -1,5 +1,7 @@
 package com.example.barberapp;
+
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -18,6 +20,10 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.jar.Attributes;
+import android.content.DialogInterface;
+
+
+
 
 public class UserActivity extends AppCompatActivity {
 
@@ -40,9 +46,9 @@ public class UserActivity extends AppCompatActivity {
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                onBackPressed();
                 FirebaseAuth.getInstance().signOut();
-                startActivity(new Intent(UserActivity.this, MainActivity.class));
-                finish();
+
             }
         });
         //כפתור מעבר למסך הגדרות
@@ -85,8 +91,6 @@ public class UserActivity extends AppCompatActivity {
                      greetingTextView.setText("welcome " + fullName +"!");
                      fullNameTextView.setText(fullName);
                      emailTextView.setText(email);
-
-
                  }
             }
             @Override
@@ -95,5 +99,54 @@ public class UserActivity extends AppCompatActivity {
                 Toast.makeText(UserActivity.this, "Something wrong happened !", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+
+    @Override
+    public void onBackPressed()
+    {
+
+        // Create the object of
+        // AlertDialog Builder class
+        AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
+        // Set the message show for the Alert time
+        builder.setMessage("אתה בטוח שברצונך לצאת ?");
+        // Set Alert Title
+        builder.setTitle("BarberApp !");
+
+        // Set Cancelable false
+        // for when the user clicks on the outside
+        // the Dialog Box then it will remain show
+        builder.setCancelable(false);
+
+        // Set the positive button with yes name
+        // OnClickListener method is use of
+        // DialogInterface interface.
+
+        builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                 // When the user click yes button
+                 // then app will close
+                   finish();
+                 }
+            });
+
+        // Set the Negative button with No name
+        // OnClickListener method is use
+        // of DialogInterface interface.
+        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                 @Override
+                 public void onClick(DialogInterface dialog, int which) {
+                  // If user click no
+                  // then dialog box is canceled.
+                  dialog.cancel();
+                 }
+               });
+
+        // Create the Alert dialog
+        AlertDialog alertDialog = builder.create();
+        // Show the Alert Dialog box
+        alertDialog.show();
     }
 }

@@ -28,6 +28,7 @@ public class ManagerAppointment extends AppCompatActivity {
         setContentView(R.layout.activity_manager_appointment);
         date_time_in=findViewById(R.id.time_layout_date);
         date_time_in_end = findViewById(R.id.time_layout_date_end);
+
         ////////////////// start time set event ///////////////////
         date_time_in.setOnClickListener(new View.OnClickListener() {
             @Override

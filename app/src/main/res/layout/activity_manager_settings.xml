@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity"
     android:orientation="vertical"
-    android:backgroundTint="@color/cardview_dark_background"
-
     android:background="#ededed">
 
 
@@ -130,7 +128,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/ic_image"
                             android:padding="10dp"
-                             />
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -165,7 +163,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/facebook"
                             android:padding="10dp"
-                             />
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -215,7 +213,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="10dp"
-                            android:text="Upload"
+                            android:text="הודעת תפוצה"
                             android:textStyle="bold" />
 
 
@@ -244,7 +242,7 @@
                             android:layout_height="64dp"
                             android:background="@drawable/facebook"
                             android:padding="10dp"
-                             />
+                            />
 
                         <TextView
                             android:layout_width="wrap_content"

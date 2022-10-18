@@ -6,19 +6,23 @@
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/ic_baseline_arrow_back_24.xml" value="0.184" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/ic_baseline_person_outline_24.xml" value="0.1145" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/round_button.xml" value="0.1315" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/drawable/user.xml" value="0.1815" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout-w1240dp/activity_login.xml" value="0.11278447121820616" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout-w936dp/activity_login.xml" value="0.131640625" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_appointment.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_barber_adapter.xml" value="0.15760869565217392" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_login.xml" value="0.17552083333333332" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_main.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_manager_appointment.xml" value="0.16666666666666666" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_manager_log_in.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_manager_log_in.xml" value="0.3333333333333333" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_manager_settings.xml" value="0.13903985507246377" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_sign_up.xml" value="0.22" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_user.xml" value="0.17552083333333332" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_sign_up.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_slider_photo.xml" value="0.14492753623188406" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_user.xml" value="0.22" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_user_forgot_password.xml" value="0.17552083333333332" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/activity_user_setttings.xml" value="0.22" />
-        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/my_row.xml" value="0.16666666666666666" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/my_row.xml" value="0.22" />
+        <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/layout/time_slot.xml" value="0.22" />
         <entry key="..\:/Users/97252/AndroidStudioProjects/BarberApp/app/src/main/res/menu/menu.xml" value="0.1" />
       </map>
     </option>
@@ -28,5 +32,12 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
+  </component>
+  <component name="VisualizationToolProject">
+    <option name="state">
+      <ProjectState>
+        <option name="scale" value="0.1" />
+      </ProjectState>
+    </option>
   </component>
 </project>

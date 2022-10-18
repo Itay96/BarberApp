@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="exampleToast">
+        <item name="colorOnBackground">@color/white</item>
+        <item name="textFillColor">#000</item>
+        <item name="icon">@drawable/barberphoto</item>
+        <item name="strokeColor">@color/my_blue</item>
+        <item name="strokeWidth">3dp</item>
+        <item name="cornerRadius">3dp</item>
+
+    </style>
+
+
+</resources>

@@ -1,17 +1,13 @@
 package com.example.barberapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.ActivityCompat;
-
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -22,7 +18,7 @@ public class UserForgotPassword extends AppCompatActivity {
     private EditText emailEt;
     private Button resetPasswordBtn;
 
-    FirebaseAuth Passauth;
+    FirebaseAuth PassAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -31,7 +27,7 @@ public class UserForgotPassword extends AppCompatActivity {
         emailEt = (EditText) findViewById(R.id.email);
         resetPasswordBtn = (Button) findViewById(R.id.ResetPassword);
 
-        Passauth = FirebaseAuth.getInstance();
+        PassAuth = FirebaseAuth.getInstance();
 
         resetPasswordBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -41,20 +37,14 @@ public class UserForgotPassword extends AppCompatActivity {
 
             private void resetPassword() {
                 String email = emailEt.getText().toString().trim();
-
                 if (email.isEmpty()){
                     emailEt.setError("Email is required");
                     emailEt.requestFocus();
                     return;
                 }
 
-               /* if(Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-                    emailEt.setError("Please provide valid email");
-                    emailEt.requestFocus();
-                    return;
-                }*/
 
-                Passauth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
+                PassAuth.sendPasswordResetEmail(email).addOnCompleteListener(new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
 

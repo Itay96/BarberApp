@@ -1,114 +1,109 @@
 package com.example.barberapp;
 
-import static android.content.ContentValues.TAG;
+import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Patterns;
+import android.widget.Button;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.Intent;
-import android.os.Bundle;
-import android.os.PatternMatcher;
-import android.util.Log;
-import android.util.Patterns;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
-
+import com.example.barberapp.Model.User;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Objects;
-import java.util.regex.Pattern;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText editTextName ,editTextPassword , editTextEmail;
+    TextInputLayout tlfullname,tlemail,tlpassword,tlphoneNo;
+    Button Register,back;
     private FirebaseAuth mAuth;
+    DatabaseReference myRef;
 
+
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_sign_up);
 
-        editTextEmail = findViewById(R.id.etEmail);
-        editTextName = findViewById(R.id.etUserName);
-        editTextPassword = findViewById(R.id.etPassword);
-        mAuth = FirebaseAuth.getInstance();
+        tlfullname = findViewById(R.id.fullName);
+        tlemail = findViewById(R.id.email);
+        tlpassword = findViewById(R.id.password);
+        tlphoneNo = findViewById(R.id.phoneNo);
+        Register = findViewById(R.id.register);
+        back = findViewById(R.id.back);
 
-        MaterialButton BtnSignup = (MaterialButton) findViewById(R.id.Btnsign_up);
-        MaterialButton BtnBack = (MaterialButton) findViewById(R.id.Btn_back);
-        // חיבור ל-FireBase
+                   ///////////חיבור ל-FireBase/////
         FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference myRef = database.getReference("Users");
-        //בעת לחיצה על כתור ה-SignUp מתבצעת קריאה לפונקציית RegisterUser
-        BtnSignup.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                RegisterUser();
-            }
-        });
+        mAuth = FirebaseAuth.getInstance();
+        myRef = database.getReference("Users");
+
+        //בעת לחיצה על כפתור ה-SignUp מתבצעת קריאה לפונקציית RegisterUser
+        Register.setOnClickListener(view -> RegisterUser());
         //כפתור חזרה למסך הראשי ממסך ההרשמה
-        BtnBack.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
-                startActivity(intent);
-                finish();
-            }
+        back.setOnClickListener(view -> {
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+            finish();
         });
     }
     //מתודה שמבצעת התחברות ושמירת נתונים לדאטה בייס
     private void RegisterUser() {
-        String name = editTextName.getText().toString();
-        String email = editTextEmail.getText().toString();
-        String password = editTextPassword.getText().toString();
+
+       final String name = tlfullname.getEditText().getText().toString();
+       final String email = tlemail.getEditText().getText().toString();
+       final String password = tlpassword.getEditText().getText().toString();
+       final String phoneNo = tlphoneNo.getEditText().getText().toString();
+       final String userType;
 
         //בדיקות על השם משתמש,סיסמא ואימייל
         if(name.isEmpty()){
-            editTextName.setError("Require Full Name !");
-            editTextName.requestFocus();
+            tlfullname.setError("Require Full Name !");
+            tlfullname.requestFocus();
             return;
         }
 
         if (email.isEmpty()){
-            editTextEmail.setError("Email valid is require !");
-            editTextEmail.requestFocus();
+            tlemail.setError("Email valid is require !");
+            tlemail.requestFocus();
             return;
         }
 
         if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
-            editTextEmail.setError("Please provide valid email");
-            editTextEmail.requestFocus();
+            tlemail.setError("Please provide valid email");
+            tlemail.requestFocus();
             return;
         }
 
         if(password.isEmpty()){
-            editTextPassword.setError("Password is required");
-            editTextPassword.requestFocus();
+            tlpassword.setError("Password is required");
+            tlpassword.requestFocus();
             return;
         }
         if(password.length() < 6){
-            editTextPassword.setError("Password must have 6 Characters");
-            editTextPassword.requestFocus();
+            tlpassword.setError("Password must have 6 Characters");
+            tlpassword.requestFocus();
             return;
         }
 
         mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                FirebaseDatabase database = FirebaseDatabase.getInstance();
+                myRef = database.getReference("Users");
                 if (task.isSuccessful()) {
-                    User user = new User(name, email, password);
+                    User user = new User(name, email,phoneNo,0);
                     FirebaseDatabase.getInstance().getReference("Users").
-                            child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
+                            child(Objects.requireNonNull(FirebaseAuth.getInstance().getCurrentUser()).getUid()).setValue(user).addOnCompleteListener(new OnCompleteListener<Void>() {
                         @Override
                         public void onComplete(@NonNull Task<Void> task) {
                             if (task.isSuccessful()) {
@@ -117,14 +112,15 @@ public class SignUpActivity extends AppCompatActivity {
                                 startActivity(intent);
                                 finish();
                             } else {
-                                Toast.makeText(getApplicationContext(), "Failed !", Toast.LENGTH_LONG).show();
+                                Toast.makeText(getApplicationContext(), "Something Wrong, try again !", Toast.LENGTH_LONG).show();
                             }
                         }
                     });
                     }else{
-                        Toast.makeText(getApplicationContext(), "Failed !", Toast.LENGTH_LONG).show();
+                        Toast.makeText(getApplicationContext(), "Something Wrong, try again !", Toast.LENGTH_LONG).show();
                 }
             }
         });
+
       }
    }

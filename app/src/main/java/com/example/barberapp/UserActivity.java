@@ -1,9 +1,7 @@
 package com.example.barberapp;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
-
+import android.annotation.SuppressLint;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -11,6 +9,11 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.barberapp.Model.User;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -19,28 +22,27 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.jar.Attributes;
-import android.content.DialogInterface;
-
-
-
-
 public class UserActivity extends AppCompatActivity {
 
-    private FirebaseUser user;
     private DatabaseReference reference;
-
+    private FirebaseUser user;
     private String userID;
-    private Button logOut,settingsBtn,appointmentBtn;
+    private Button logOut;
+    private TextView settingsBtn;
+    private TextView appointmentBtn;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user);
 
-        logOut = (Button) findViewById(R.id.signOut);
-        settingsBtn = (Button) findViewById(R.id.settings);
-         appointmentBtn = (Button) findViewById(R.id.appointmentBtn);
+        logOut = (Button) findViewById(R.id.logOut);
+        settingsBtn = (TextView) findViewById(R.id.settingsButton);
+         appointmentBtn = (TextView) findViewById(R.id.appointmentButton);
+        TextView appointmentList = (TextView) findViewById(R.id.AppointmentList);
+
+
 
        //כפתור יציאה במסך של המשתמש
         logOut.setOnClickListener(new View.OnClickListener() {
@@ -48,7 +50,6 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 onBackPressed();
                 FirebaseAuth.getInstance().signOut();
-
             }
         });
         //כפתור מעבר למסך הגדרות
@@ -57,7 +58,6 @@ public class UserActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(getApplicationContext(),UserSettings.class);
                 startActivity(intent);
-
             }
         });
 
@@ -65,7 +65,15 @@ public class UserActivity extends AppCompatActivity {
         appointmentBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(getApplicationContext(),AppointmentActivity.class);
+                Intent intent = new Intent(getApplicationContext(),BarberSelected.class);
+                startActivity(intent);
+            }
+        });
+
+        appointmentList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(getApplicationContext(),UserAppointmentList.class);
                 startActivity(intent);
             }
         });
@@ -75,66 +83,52 @@ public class UserActivity extends AppCompatActivity {
         reference = FirebaseDatabase.getInstance().getReference("Users");
         userID = user.getUid();
 
-        final TextView greetingTextView = (TextView) findViewById(R.id.greeting);
-        final TextView fullNameTextView = (TextView) findViewById(R.id.fullName);
-        final TextView emailTextView = (TextView) findViewById(R.id.emailAddress);
-
+        final TextView fullNameTextView = (TextView) findViewById(R.id.title_user);
 
         reference.child(userID).addListenerForSingleValueEvent(new ValueEventListener() {
+            @SuppressLint("SetTextI18n")
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                  User userProfile = snapshot.getValue(User.class);
                  if(userProfile != null){
                      String fullName = userProfile.getName();
-                     String email = userProfile.getEmail();
-
-                     greetingTextView.setText("welcome " + fullName +"!");
-                     fullNameTextView.setText(fullName);
-                     emailTextView.setText(email);
+                     fullNameTextView.setTextColor(getColor(R.color.black));
+                     fullNameTextView.setText(fullName + "!");
+                     // System.out.println("$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44"+userID);
                  }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError error) {
-
                 Toast.makeText(UserActivity.this, "Something wrong happened !", Toast.LENGTH_SHORT).show();
             }
         });
     }
 
-
     @Override
     public void onBackPressed()
     {
-
-        // Create the object of
         // AlertDialog Builder class
         AlertDialog.Builder builder = new AlertDialog.Builder(UserActivity.this);
         // Set the message show for the Alert time
         builder.setMessage("אתה בטוח שברצונך לצאת ?");
         // Set Alert Title
-        builder.setTitle("BarberApp !");
-
+        builder.setTitle("BarberApp");
         // Set Cancelable false
-        // for when the user clicks on the outside
-        // the Dialog Box then it will remain show
+        builder.setIcon(getDrawable(R.drawable.barberphoto));
         builder.setCancelable(false);
-
         // Set the positive button with yes name
-        // OnClickListener method is use of
-        // DialogInterface interface.
-
         builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                  // When the user click yes button
                  // then app will close
-                   finish();
+                    Intent intent = new Intent(UserActivity.this,MainActivity.class);
+                    startActivity(intent);
+                    finish();
+
                  }
             });
-
         // Set the Negative button with No name
-        // OnClickListener method is use
-        // of DialogInterface interface.
         builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
                  @Override
                  public void onClick(DialogInterface dialog, int which) {

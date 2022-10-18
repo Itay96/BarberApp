@@ -1,27 +1,31 @@
-package com.example.barberapp;
+package com.example.barberapp.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.TextureView;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.barberapp.R;
+
 public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
-    String data1[],data2[];
-    int images[];
+    String data1,data2;
+    String s3;
     Context context;
 
-    public MyAdapter(Context ct, String s1[],String s2[], int img[]){
+
+    public MyAdapter(Context ct, String s1, String s2, String s3){
         context = ct;
         data1 = s1;
         data2 = s2;
-        images = img;
+        s3 = s3;
+
+
+
     }
     @NonNull
     @Override
@@ -33,27 +37,32 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        holder.myText1.setText(data1[position]);
-        holder.myText2.setText(data2[position]);
-        holder.myImage.setImageResource(images[position]);
+        holder.myText1.setText(data1);
+        holder.myText2.setText(data2);
+
 
     }
 
     @Override
     public int getItemCount() {
-        return images.length;
+        return 0;
     }
 
-    public class MyViewHolder extends RecyclerView.ViewHolder {
 
-        TextView myText1,myText2;
-        ImageView myImage;
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
+
+        TextView myText1,myText2,myText3;
+
+
 
         public MyViewHolder(@NonNull View itemView) {
             super(itemView);
             myText1 = itemView.findViewById(R.id.my_txt1);
             myText2 = itemView.findViewById(R.id.my_txt2);
-            myImage = itemView.findViewById(R.id.myImage_view);
+
+
+
+
         }
     }
 }
